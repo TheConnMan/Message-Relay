@@ -72,6 +72,23 @@ environments {
 			url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
 		}
 	}
+	devdeploy {
+		dataSource {
+			dbCreate = "create-drop"
+			url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			pooled = true
+			properties {
+				maxActive = -1
+				minEvictableIdleTimeMillis=1800000
+				timeBetweenEvictionRunsMillis=1800000
+				numTestsPerEvictionRun=3
+				testOnBorrow=true
+				testWhileIdle=true
+				testOnReturn=true
+				validationQuery="SELECT 1"
+			}
+		}
+	}
 	production {
 		dataSource {
 			dbCreate = "update"
