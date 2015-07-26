@@ -46,8 +46,9 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-ui:1.0-RC2"
 		compile ":spring-security-core:2.0-RC5"
 		compile ":jquery-ui:1.10.4"
+		compile ":oauth:2.6.1"
 
-		compile ":codenarc:0.22"
+		test ":codenarc:0.22"
 
 	}
 }

@@ -1,3 +1,6 @@
+def loc = ['../UserConfig.groovy', 'webapps/ROOT/Jenkins.groovy'].grep { new File(it).exists() }.first();
+def localConfig = new ConfigSlurper(grailsSettings.grailsEnv).parse(new File(loc).toURI().toURL())
+
 grails.project.groupId = appName
 grails.mime.file.extensions = true
 grails.mime.use.accept.header = false
@@ -40,12 +43,32 @@ grails.hibernate.cache.queries = false
 environments {
 	development {
 		grails.logging.jul.usebridge = true
+		grails.serverURL = "http://192.168.0.15:8080"
+		oauth.providers.github.key = localConfig.oauth.github.key
+		oauth.providers.github.secret = localConfig.oauth.github.secret
 	}
 	devdeploy {
 		grails.logging.jul.usebridge = false
+		grails.serverURL = "http://relay.theconnman.com"
+		oauth.providers.github.key = localConfig.oauth.github.key.devdeploy
+		oauth.providers.github.secret = localConfig.oauth.github.secret.devdeploy
 	}
 	production {
 		grails.logging.jul.usebridge = false
+		grails.serverURL = "http://relay.theconnman.com"
+		oauth.providers.github.key = localConfig.oauth.github.key.prod
+		oauth.providers.github.secret = localConfig.oauth.github.secret.prod
+	}
+}
+
+oauth {
+	providers {
+		github {
+			api = com.theconnman.GitHubApi
+			successUri = '/github'
+			failureUri = '/error'
+			callback = "${ grails.serverURL }/oauth/github/callback"
+		}
 	}
 }
 

@@ -6,8 +6,8 @@ class BootStrap {
 
 	def springSecurityService
 
-	def createUser(user,pass,role) {
-		def theUser = new User(username:user,password:pass)
+	def createUser(user, role) {
+		def theUser = new User(username:user)
 		theUser.save(flush:true)
 		UserRole.create theUser, role, true
 	}
@@ -19,9 +19,9 @@ class BootStrap {
 			if (UserRole.list().size() == 0) {
 				def adminRole = new Role(authority:'ROLE_ADMIN').save(flush:true)
 				def userRole = new Role(authority:'ROLE_USER').save(flush:true)
-
-				createUser('admin','stbadmin2014',adminRole)
-				createUser('user','stbuser2014',userRole)
+				
+				createUser('TheConnMan', adminRole)
+				createUser('madjenjen', adminRole)
 			}
 		} catch (Exception e) {
 			log.error("Exception during bootstrap init", e)

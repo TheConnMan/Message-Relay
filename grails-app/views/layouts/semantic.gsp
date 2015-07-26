@@ -24,34 +24,36 @@
 
 	<body>
 		<div class="menu-wrapper">
-			<sec:ifLoggedIn>
-				<div class="ui menu">
-					<a class="item menu-home" href="/">
-						<i class="icon home"></i>
-						Home
-					</a>
-					<sec:ifAllGranted roles="ROLE_ADMIN">
-						<div class="ui dropdown item">
-							<i class="icon setting"></i>
-							Admin Actions <i class="icon dropdown"></i>
-							<div class="menu">
-								<g:link class="item" controller="user">Edit Users</g:link>
-								<a class="item" href="/controllers">Internal Controllers</a>
-							</div>
-						</div>
-					</sec:ifAllGranted>
-					<div class="right menu">
-						<div class="ui dropdown item">
-							<sec:username/> <i class="icon dropdown"></i>
-							<div class="menu">
-								<g:link class="item" controller="logout">
-									<i class="icon sign out"></i> Logout
-								</g:link>
-							</div>
+			<div class="ui menu">
+				<a class="item menu-home" href="/">
+					<i class="icon home"></i>
+					Home
+				</a>
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<div class="ui dropdown item">
+						<i class="icon setting"></i>
+						Admin Actions <i class="icon dropdown"></i>
+						<div class="menu">
+							<g:link class="item" controller="user">Edit Users</g:link>
+							<a class="item" href="/controllers">Internal Controllers</a>
 						</div>
 					</div>
+				</sec:ifAllGranted>
+				<div class="right menu">
+					<sec:ifLoggedIn>
+						<div class="item">
+							 <sec:username/>
+						</div>
+						<relay:avatar class="ui avatar circular image" style="width: 40px; height: 40px; float: right;" />
+					</sec:ifLoggedIn>
+					<sec:ifNotLoggedIn>
+						<oauth:connect provider="github" class="item">
+							<i class="github square icon"></i>
+							Log In With GitHub
+						</oauth:connect>
+					</sec:ifNotLoggedIn>
 				</div>
-			</sec:ifLoggedIn>
+			</div>
 		</div>
 
 		<div class="content">
