@@ -30,6 +30,10 @@
 					Home
 				</a>
 				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<g:link class="item" controller="message">
+						<i class="icon mail"></i>
+						Messages
+					</g:link>
 					<div class="ui dropdown item">
 						<i class="icon setting"></i>
 						Admin Actions <i class="icon dropdown"></i>
