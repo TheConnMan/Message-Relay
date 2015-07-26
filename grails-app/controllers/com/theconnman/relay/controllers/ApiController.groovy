@@ -10,7 +10,7 @@ class ApiController {
 	def grailsApplication
 	MessageService messageService
 
-	def v1(String function, String key, String clientId) {
+	def v1(String function, String key, String clientId, String payload) {
 		try {
 			String apiKey = grailsApplication.config.relay.api.key
 			Map result = [ok: true]
@@ -21,13 +21,17 @@ class ApiController {
 				throw new MessageRelayException('No client ID')
 			}
 			if (function == 'get') {
-				String payload = messageService.getMessage(clientId)
-				if (payload) {
+				String messagePayload = messageService.getMessage(clientId)
+				if (messagePayload) {
 					result.success = true
-					result.message = JSON.parse(payload)
+					result.message = JSON.parse(messagePayload)
 				} else {
 					result.success = false
 				}
+			}
+			if (function == 'put') {
+				messageService.putMessage(clientId, payload)
+				result.success = true
 			}
 			render(result as JSON)
 		} catch (MessageRelayException e) {
