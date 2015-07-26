@@ -47,6 +47,8 @@ grails.project.dependency.resolution = {
 		compile ":spring-security-core:2.0-RC5"
 		compile ":jquery-ui:1.10.4"
 
+		test ":codenarc:0.22"
+
 	}
 }
 codenarc.reports = {
@@ -55,21 +57,18 @@ codenarc.reports = {
 		title = 'Message Relay XML Report'
 	}
 
-
 	MyHtmlReport('html') {
 		outputFile = 'target/CodeNarcReport.html'
 		title = 'Message Relay html Report'
 	}
 }
-codenarc.ruleSetFiles="file:grails-app/conf/CodeNarcRules.groovy"
+codenarc.ruleSetFiles="file:test/CodeNarcRules.groovy"
 
-codenarc.properties = {
-	GrailsPublicControllerMethod.enabled = false
-	EmptyIfStatement.priority = 1
-}
-
-codenarc.maxPriority1Violations = 50
-codenarc.maxPriority2Violations = 100
-codenarc.maxPriority3Violations = 100
+codenarc.ruleSetFiles="file:test/CodeNarcRules.groovy"
+codenarc.processViews = true
 
 codenarc.systemExitOnBuildException = false
+
+coverage {
+	enabledByDefault = false
+}
