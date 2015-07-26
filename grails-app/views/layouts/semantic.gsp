@@ -34,14 +34,6 @@
 						<i class="icon mail"></i>
 						Messages
 					</g:link>
-					<div class="ui dropdown item">
-						<i class="icon setting"></i>
-						Admin Actions <i class="icon dropdown"></i>
-						<div class="menu">
-							<g:link class="item" controller="user">Edit Users</g:link>
-							<a class="item" href="/controllers">Internal Controllers</a>
-						</div>
-					</div>
 				</sec:ifAllGranted>
 				<div class="right menu">
 					<sec:ifLoggedIn>
