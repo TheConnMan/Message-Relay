@@ -61,6 +61,12 @@ environments {
 	}
 }
 
+relay {
+	api {
+		key = localConfig.relay.api.key
+	}
+}
+
 oauth {
 	providers {
 		github {
