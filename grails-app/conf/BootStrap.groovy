@@ -1,11 +1,10 @@
-import com.sra.Role
-import com.sra.User
-import com.sra.UserRole
+import com.theconnman.relay.domains.Role
+import com.theconnman.relay.domains.User
+import com.theconnman.relay.domains.UserRole
 
 class BootStrap {
 
 	def springSecurityService
-	def searchableService
 
 	def createUser(user,pass,role) {
 		def theUser = new User(username:user,password:pass)
@@ -17,7 +16,7 @@ class BootStrap {
 		log.info 'Boostrapping'
 		TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"))
 		try {
-			if (UserRole.list().size() == 0) { //only load on empty DB
+			if (UserRole.list().size() == 0) {
 				def adminRole = new Role(authority:'ROLE_ADMIN').save(flush:true)
 				def userRole = new Role(authority:'ROLE_USER').save(flush:true)
 

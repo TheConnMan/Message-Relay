@@ -41,7 +41,6 @@ grails.project.dependency.resolution = {
 		compile ":quartz:1.0.1"
 		compile ":scaffolding:2.1.2"
 		compile ":searchable:0.6.9"
-		compile ":executor:0.3"
 		compile ":markdown:1.1.1"
 
 		build ':tomcat:7.0.55.2'
@@ -54,13 +53,13 @@ grails.project.dependency.resolution = {
 codenarc.reports = {
 	MyXmlReport('xml') {
 		outputFile = 'target/CodeNarcReport.xml'
-		title = 'SingleTenantBase XML Report'
+		title = 'Message Relay XML Report'
 	}
 
 
 	MyHtmlReport('html') {
 		outputFile = 'target/CodeNarcReport.html'
-		title = 'SingleTenantBase html Report'
+		title = 'Message Relay html Report'
 	}
 }
 codenarc.ruleSetFiles="file:grails-app/conf/CodeNarcRules.groovy"

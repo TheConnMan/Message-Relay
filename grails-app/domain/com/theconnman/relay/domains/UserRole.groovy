@@ -1,4 +1,4 @@
-package com.sra
+package com.theconnman.relay.domains
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

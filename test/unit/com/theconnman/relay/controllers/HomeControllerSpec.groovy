@@ -1,4 +1,6 @@
-package com.sra
+package com.theconnman.relay.controllers
+
+import com.theconnman.relay.controllers.HomeController;
 
 import grails.test.mixin.TestFor
 import spock.lang.*
