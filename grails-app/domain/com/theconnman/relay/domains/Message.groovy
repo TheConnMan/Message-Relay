@@ -3,12 +3,12 @@ package com.theconnman.relay.domains
 class Message {
 
 	String clientId
-	String message
+	String payload
 	Date dateCreated
 
 	static constraints = {
 		clientId()
-		message maxSize: 5000
+		payload maxSize: 5000
 		dateCreated()
 	}
 }
