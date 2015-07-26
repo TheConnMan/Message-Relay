@@ -36,10 +36,10 @@ class ApiController {
 			render(result as JSON)
 		} catch (MessageRelayException e) {
 			log.warn e.getMessage()
-			render([ok: false] as JSON)
+			render([ok: false, error: e.getMessage()] as JSON)
 		} catch (e) {
 			log.error e.getMessage()
-			render([ok: false] as JSON)
+			render([ok: false, error: e.getMessage()] as JSON)
 		}
 	}
 }
