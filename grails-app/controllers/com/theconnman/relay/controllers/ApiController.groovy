@@ -13,7 +13,7 @@ class ApiController {
 	def v1(String function, String key, String clientId) {
 		try {
 			String apiKey = grailsApplication.config.relay.api.key
-			Map result = [success: true]
+			Map result = [ok: true]
 			if (apiKey != key) {
 				throw new MessageRelayException('Invalid API key')
 			}
@@ -23,16 +23,19 @@ class ApiController {
 			if (function == 'get') {
 				String payload = messageService.getMessage(clientId)
 				if (payload) {
+					result.success = true
 					result.message = JSON.parse(payload)
+				} else {
+					result.success = false
 				}
 			}
 			render(result as JSON)
 		} catch (MessageRelayException e) {
 			log.warn e.getMessage()
-			render([success: false] as JSON)
+			render([ok: false] as JSON)
 		} catch (e) {
 			log.error e.getMessage()
-			render([success: false] as JSON)
+			render([ok: false] as JSON)
 		}
 	}
 }
