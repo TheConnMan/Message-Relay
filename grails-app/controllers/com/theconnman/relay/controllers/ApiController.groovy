@@ -1,14 +1,16 @@
 package com.theconnman.relay.controllers
 
-import com.theconnman.relay.domains.Message
+import grails.converters.JSON
+import grails.plugin.slack.SlackService
+
 import com.theconnman.relay.exceptions.MessageRelayException
 import com.theconnman.relay.services.MessageService
-import grails.converters.JSON
 
 class ApiController {
 
 	def grailsApplication
 	MessageService messageService
+	SlackService slackService
 
 	def v1(String function, String key, String clientId, String payload) {
 		try {
@@ -16,9 +18,6 @@ class ApiController {
 			Map result = [ok: true]
 			if (apiKey != key) {
 				throw new MessageRelayException('Invalid API key')
-			}
-			if (!clientId) {
-				throw new MessageRelayException('No client ID')
 			}
 			if (function == 'get') {
 				String messagePayload = messageService.getMessage(clientId)
@@ -31,6 +30,13 @@ class ApiController {
 			}
 			if (function == 'put') {
 				messageService.putMessage(clientId, payload)
+				result.success = true
+			}
+			if (function == 'slack') {
+				slackService.send {
+					text params.message
+					channel params.channel ?: '#testing'
+				}
 				result.success = true
 			}
 			render(result as JSON)

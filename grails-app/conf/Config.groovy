@@ -67,6 +67,10 @@ relay {
 	}
 }
 
+slack {
+	webhook = localConfig.relay.slack.webhook
+}
+
 oauth {
 	providers {
 		github {
