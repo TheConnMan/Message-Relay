@@ -30,6 +30,10 @@
 					Home
 				</a>
 				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<g:link class="item" controller="graph">
+						<i class="icon line graph"></i>
+						Graph
+					</g:link>
 					<g:link class="item" controller="message">
 						<i class="icon mail"></i>
 						Messages
