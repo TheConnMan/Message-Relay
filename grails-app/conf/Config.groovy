@@ -126,6 +126,8 @@ grails.plugin.springsecurity.authority.className = 'com.theconnman.relay.domains
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**':								['permitAll'],
 	'/message/**':						['ROLE_ADMIN'],
+	'/dataValue/**':					['ROLE_ADMIN'],
+	'/graph/**':						['ROLE_ADMIN'],
 	'/user/**':							['ROLE_ADMIN'],
 	'/role/**':							['ROLE_ADMIN'],
 	'/registrationCode/**':				['ROLE_ADMIN'],
