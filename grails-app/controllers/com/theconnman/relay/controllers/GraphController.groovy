@@ -1,5 +1,7 @@
 package com.theconnman.relay.controllers
 
+import grails.converters.JSON
+
 import com.theconnman.relay.domains.DataValue
 
 class GraphController {
@@ -11,5 +13,9 @@ class GraphController {
 			}
 		}.sort()
 		[clientIds: clientIds]
+	}
+
+	def data() {
+		render(DataValue.findAllByClientId(params.clientId) as JSON)
 	}
 }
